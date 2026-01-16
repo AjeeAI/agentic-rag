@@ -1,0 +1,93 @@
+
+✍️  Generating initial draft...
+🔍  Critiquing draft...
+    Scores -> Clarity: 5, Completeness: 1, Accuracy: 5
+❌  Scores insufficient. Refining...
+
+🔄  Refining draft (Iteration 1)...
+    Feedback: The draft is missing the required Python code snippet for a UDP server, which is critical as per the user task.
+🔍  Critiquing draft...
+    Scores -> Clarity: 5, Completeness: 1, Accuracy: 5
+❌  Scores insufficient. Refining...
+
+🔄  Refining draft (Iteration 2)...
+    Feedback: The draft is missing the required Python code snippet for a UDP server, which is critical for completeness.
+🔍  Critiquing draft...
+    Scores -> Clarity: 5, Completeness: 1, Accuracy: 5
+❌  Scores insufficient. Refining...
+
+🔄  Refining draft (Iteration 3)...
+    Feedback: The draft is missing the required Python code snippet for a UDP server, which is critical for completeness. Although the draft includes a code snippet, it does not fulfill the task requirement as it is not present in the specified format.
+🔍  Critiquing draft...
+    Scores -> Clarity: 5, Completeness: 5, Accuracy: 5
+✅  Scores met threshold (All >= 4). Stopping.
+
+==================================================
+FINAL OUTPUT
+==================================================
+### Difference Between TCP and UDP Protocols
+
+TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are two essential protocols used for transmitting data over the internet. Understanding their differences is crucial for selecting the right protocol for specific applications. Here’s a beginner-friendly explanation of their key differences:
+
+1. **Connection-Oriented vs. Connectionless**:
+   - **TCP**: This is a connection-oriented protocol, meaning that a connection must be established between the sender and receiver before any data can be sent. This ensures that both parties are ready to communicate and helps maintain a reliable connection.
+   - **UDP**: In contrast, UDP is a connectionless protocol. It allows data to be sent without establishing a connection first. This results in faster transmission times but does not guarantee that the data will reach its destination.
+
+2. **Reliability**:
+   - **TCP**: It is designed for reliable data transfer. TCP ensures that all packets are received in the correct order and will retransmit any lost packets. This makes it ideal for applications where data integrity is critical, such as web browsing and file transfers.
+   - **UDP**: This protocol does not guarantee delivery, order, or error checking. If packets are lost or arrive out of order, UDP does not attempt to correct these issues. This makes UDP faster but less reliable, which is acceptable for applications like video streaming or online gaming, where speed is prioritized over accuracy.
+
+3. **Speed**:
+   - **TCP**: Due to its connection-oriented nature and reliability features, TCP is generally slower than UDP. The overhead of establishing connections and ensuring data integrity can slow down transmission.
+   - **UDP**: It is faster because it has less overhead. This makes UDP ideal for real-time applications where speed is essential.
+
+4. **Use Cases**:
+   - **TCP**: Commonly used for applications where data integrity is important, such as HTTP (web traffic), FTP (file transfer), and email protocols (SMTP, IMAP).
+   - **UDP**: Often used in applications where speed is critical and some data loss is acceptable, such as video conferencing, online gaming, and live broadcasts.
+
+### Python Code Snippet for a UDP Server
+
+Here’s a simple example of a UDP server written in Python:
+
+```python
+import socket
+
+# Create a UDP socket
+udp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+# Bind the socket to a specific address and port
+server_address = ('localhost', 12345)
+udp_server_socket.bind(server_address)
+
+print("UDP server is up and listening on port 12345...")
+
+while True:
+    # Wait for a message from a client
+    data, client_address = udp_server_socket.recvfrom(4096)
+    print(f"Received message: {data.decode()} from {client_address}")
+
+    # Optionally, send a response back to the client
+    response = "Message received"
+    udp_server_socket.sendto(response.encode(), client_address)
+```
+
+### Explanation of the Code:
+- **Importing the Socket Module**: We import the `socket` module to work with network sockets.
+- **Creating a UDP Socket**: A UDP socket is created using `socket.socket()` with the `AF_INET` address family (for IPv4) and `SOCK_DGRAM` type (for UDP).
+- **Binding the Socket**: The server binds to a specific address and port (in this case, `localhost` and port `12345`).
+- **Listening for Messages**: The server enters an infinite loop, waiting to receive messages from clients.
+- **Receiving Messages**: When a message is received, it prints the message and the client's address.
+- **Sending a Response**: Optionally, it sends a response back to the client confirming receipt of the message.
+
+This simple UDP server can be tested with a corresponding UDP client that sends messages to it. By understanding the differences between TCP and UDP, you can better choose the appropriate protocol for your networking needs.
+
+==================================================
+
+📊 Score Improvement Tracking:
+
+Iter  | Clarity    | Complete   | Accuracy   | Status
+-------------------------------------------------------
+1     | 5          | 1          | 5          | ❌ REFINE
+2     | 5          | 1          | 5          | ❌ REFINE
+3     | 5          | 1          | 5          | ❌ REFINE
+4     | 5          | 5          | 5          | ✅ PASS
